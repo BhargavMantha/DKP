@@ -1,0 +1,88 @@
+0-getting geo names
+https://www.drikpanchang.com/dkphp/dp-geo/dp-city-srch.php?search=<city-name>
+now get the data from the url
+https://www.drikpanchang.com/tables/planetary-positions-sidereal.html?geoname-id=<the recieved geoig>&date="the date"&time=<thetime>
+1-scrape data for all columns from the website for 1015 cites 
+   for all 24 hours
+   for all 365 days 
+   for all 15 planets 
+   for all 1015 cities
+  
+1.1-insert all scraped data into db
+1.2-make remote db on gcp
+2-find all melafic planets for each columns
+3-from these columns find the city with common ascendent and moon
+
+
+
+
+-------------------------------------------
+
+step 1-scrapping
+    1.1-first scrape all available geonames from drikpanchang by looping through the array of all cities using the followoing url say <a>-->https://www.drikpanchang.com/dkphp/dp-geo/dp-city-srch.php?search=<city-name>
+
+    use fetch
+    -------
+    1.2-Now use the geonames to obtain the following url https://www.drikpanchang.com/tables/planetary-positions-sidereal.html?geoname-id=<a>&date="the date"&time=<thetime>
+    -------
+    1.3-Now scrape all the data in the table using node-fetch and push each cell value into an array
+    -------
+    1.4-return the obtained value from the above function
+=====================-------
+step 2-form the sql query
+    since the obtained query will be too large and hence cannot be inserted in one go  bifercate the geo ids and the using the same form the sql queries
+...........
+    2.1-form the sql querie 
+        the values obtained here are working well when bifercated into 5 parts
+=====================--------
+step 3-INSERT THE GENERATED QUERY INTO DATABASE
+=====================--------
+step 4-NOW allocate a number to each planet
+    in the following order
+    1-"Ashwini"
+    2-"Bharani"
+    3-"Krittika"
+    4-"Rohini"
+    5-"Mrigashirsha"
+    6-"Ardra"
+    7-"Punarvasu"
+    8-"Pushya"
+    9-"Ashlesha"
+    10-"Magha"
+    11-"Purva Phalguni"
+    12-"Uttara Phalguni"
+    13-"Hasta"
+    14-"Chitra"
+    15-"Swati"
+    16-"Vishakha"
+    17-"Anuradha"
+    18-"Jyeshtha"
+    19-"Mula"
+    20-"Purva Ashadha"
+    21-"Uttara Ashadha"
+    22-"Shravana"
+    23-"Dhanishtha"
+    24-"Shatabhisha"
+    25-"Purva Bhadrapada"
+    27-"Uttara Bhadrapada"
+    28-"Revati"
+    29-"Abhijit"
+
+    Melafic planets are Mars saturn sun rahu and katu
+    have the Nakshatra-numbers as values  
+    3,16,17,2-col1
+    4,15,18,1-col2
+    5,14,19,28-col3
+    6,13,20,27-col4
+    7,12,21,26-col5
+    8,11,22,25-col6
+    9,10,23,24-col7
+===========-------
+step -5
+    Now insert the above gathered data into 7 tables(my approach)
+===========-------
+step -6
+    find the cities with 3>= more melafic planets
+    Insert into table its respective time date and other values
+____________________________________________________________________________________________________________
+Do the above for specific place,date and time
